@@ -1,0 +1,33 @@
+[Unit]
+Description=Janta ka Mantar counter
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/janta/env
+ExecStart=/usr/bin/node /opt/janta/server.mjs
+Restart=always
+RestartSec=1
+StandardOutput=null
+StandardError=null
+
+# Locked down: throwaway user, read-only system, no extra privileges
+DynamicUser=yes
+StateDirectory=janta
+StateDirectoryMode=0700
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+SystemCallArchitectures=native
+MemoryMax=512M
+
+[Install]
+WantedBy=multi-user.target

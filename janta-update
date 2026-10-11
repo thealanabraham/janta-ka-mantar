@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Pull the latest public code; restart the counter only if something changed.
+set -euo pipefail
+cd /opt/janta
+git fetch -q --depth 1 origin
+if [ "$(git rev-parse HEAD)" != "$(git rev-parse FETCH_HEAD)" ]; then
+  git reset -q --hard FETCH_HEAD
+  systemctl restart janta.service
+fi

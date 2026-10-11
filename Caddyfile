@@ -1,0 +1,18 @@
+# HTTPS (free, automatic certificates) in front of the counter.
+# No `log` directive = no access logs. Do not add one.
+{
+	admin off
+}
+
+YOUR_DOMAIN {
+	encode zstd gzip
+	header -Server
+	reverse_proxy 127.0.0.1:8787 {
+		header_up -X-Forwarded-For
+		header_up -X-Real-IP
+	}
+}
+
+www.YOUR_DOMAIN {
+	redir https://YOUR_DOMAIN{uri} permanent
+}

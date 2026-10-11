@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>जनता का मंतर / Janta ka Mantar</title>
+<meta name="description" content="जंतर मंतर नहीं जा सकते? यहाँ खड़े होइए। For a free, fair and accountable Election Commission. One tap. No name, no data.">
+<meta name="theme-color" content="#FF9933">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="no-referrer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="जनता का मंतर / Janta ka Mantar: the digital Jantar Mantar">
+<meta property="og:description" content="Can't be at Jantar Mantar? Stand here. One tap, no data.">
+<meta property="og:url" content="https://__DOMAIN__/">
+<meta property="og:image" content="https://__DOMAIN__/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/mukta-devanagari-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+<main class="page">
+
+  <header class="top">
+    <div class="flag" id="flag" role="img" aria-label="भारत का तिरंगा / The Indian tricolour"></div>
+    <div class="name">
+      <p class="motto">सत्यमेव जयते</p>
+      <p class="title">जनता का मंतर</p>
+      <p class="sub">डिजिटल जंतर मंतर<br>The digital Jantar Mantar</p>
+    </div>
+  </header>
+
+  <h1 class="question">
+    <span class="q-hi">अगर आप जा पाते, तो क्या आप वहाँ होते?</span>
+    <span class="q-en">If you could, would you be there?</span>
+  </h1>
+
+  <p class="cause">एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।<br>
+    <span>For a free, fair and accountable Election Commission.</span></p>
+
+  <section class="act" id="act" data-state="ready">
+    <button class="stand" id="stand" type="button" aria-describedby="stand-status">
+      <svg class="finger" viewBox="0 0 64 96" aria-hidden="true">
+        <path d="M14 92V40C14 22 22 8 32 8s18 14 18 32v52"/>
+        <path class="nail" d="M23 28c0-8 4-13 9-13s9 5 9 13"/>
+        <path class="ink" d="M21 34h22"/>
+      </svg>
+      <span class="stand-text"><b>मेरा समर्थन है</b><span>I stand with this</span></span>
+    </button>
+    <p class="status" id="stand-status" role="status" aria-live="polite"></p>
+    <div class="share" id="share" hidden>
+      <button type="button" class="share-btn share-wa" id="share-wa">WhatsApp पर भेजें / Send</button>
+      <button type="button" class="share-btn" id="share-img">तस्वीर / Image</button>
+      <button type="button" class="share-btn" id="share-link">लिंक / Link</button>
+    </div>
+  </section>
+
+  <section class="tally">
+    <p class="count" id="count">0</p>
+    <p class="count-label">लोग साथ खड़े हैं / people stand with this</p>
+    <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+    <p class="meta"><span id="since">11 अक्टूबर 2026 से / since 11 Oct 2026</span><span id="milestone-text"></span></p>
+  </section>
+
+  <footer class="foot">
+    <p>न नाम, न डेटा, न ट्रैकिंग। निर्दलीय, किसी दल से नहीं जुड़ा।<br>
+      No name, no data, no tracking. Non-partisan, not linked to any party.</p>
+    <details class="how">
+      <summary>यह कैसे काम करता है / How it works</summary>
+      <p>The server keeps one number and nothing about you. Your phone remembers your tap and solves a small puzzle that stops bots. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
+    </details>
+  </footer>
+
+</main>
+<canvas id="card" width="1080" height="1350" hidden></canvas>
+</body>
+</html>

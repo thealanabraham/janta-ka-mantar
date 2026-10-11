@@ -1,0 +1,12 @@
+#cloud-config
+# Janta ka Mantar: paste this whole file into the "Cloud config" (or "User data") box
+# when you create the server. Your domain and code link are already filled in.
+# The server then installs and secures itself in about 5 minutes. You never need to log in.
+runcmd:
+  - |
+    export DOMAIN="jantakamantar.org"                                   # your domain (filled in)
+    export REPO="https://github.com/thealanabraham/janta-ka-mantar.git"   # your public code (filled in)
+    export SINCE="2026-10-11"
+    apt-get update -q && apt-get install -y -q git
+    git clone --depth 1 "$REPO" /opt/janta
+    bash /opt/janta/setup.sh

@@ -1,0 +1,7 @@
+[Unit]
+Description=Update Janta ka Mantar from its public code
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/janta-update
+StandardOutput=null
