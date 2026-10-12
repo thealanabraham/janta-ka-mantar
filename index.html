@@ -20,8 +20,8 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/mukta-devanagari-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/hand.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="/style.css?v=7">
-<script src="/app.js?v=7" defer></script>
+<link rel="stylesheet" href="/style.css?v=8">
+<script src="/app.js?v=8" defer></script>
 </head>
 <body>
 <main class="page">
@@ -31,9 +31,9 @@
   </header>
 
   <h1 class="question">
-    <span class="en">If you could,<br>would you be there?</span>
+    <span class="hi">अगर आप जा पाते,<br>तो क्या आप वहाँ होते?</span>
     <span class="rule" aria-hidden="true"></span>
-    <span class="line hi">अगर आप जा पाते, तो क्या आप वहाँ होते?</span>
+    <span class="line en">If you could, would you be there?</span>
   </h1>
 
   <section class="act" id="act" data-state="ready">
@@ -42,19 +42,20 @@
       <span class="photo"><img class="hand" src="/hand.webp" width="424" height="400" alt="" decoding="async" fetchpriority="high"></span>
     </div>
 
-    <button class="stand" id="stand" type="button" aria-describedby="stand-status">
-      <span class="when-ready"><span class="hi">मैं भी साथ हूँ — अपना समर्थन दर्ज करें</span><span class="en">I stand with this — tap to add your support</span></span>
-      <span class="when-done"><span class="hi">✓ आपका समर्थन दर्ज हो गया</span><span class="en">Your support is added</span></span>
-    </button>
-    <p class="private">न नाम · न फ़ोन नंबर · न लॉगिन<span>No name · No phone number · No login</span></p>
-
     <p class="count-row" aria-live="polite">
       <span class="now">अभी<br>Now</span>
       <span class="prev" id="count-prev"></span>
       <span class="count" id="count">0</span>
       <span class="plus" id="count-plus">+1</span>
-      <span class="count-label">लोग साथ हैं<br>people stand with this</span>
+      <span class="count-label" id="count-label">लोग साथ खड़े हैं<br>people stand with this</span>
     </p>
+
+    <button class="stand" id="stand" type="button" aria-describedby="stand-status">
+      <span class="when-ready"><span class="hi">मैं भी साथ हूँ — अपना समर्थन दर्ज करें</span><span class="en">I stand with this — tap to add your support →</span></span>
+      <span class="when-done"><span class="hi">✓ आपका समर्थन दर्ज हो गया</span><span class="en">Your support is added</span></span>
+    </button>
+    <p class="private">न लॉगिन · न नाम · न ट्रैकिंग<span>No login · No name required · No tracking</span></p>
+
 
     <p class="status" id="stand-status" role="status"></p>
     <div class="share" id="share" hidden>
@@ -73,8 +74,10 @@
     <footer class="foot">
       <p class="tags">Non-partisan <i>•</i> No name <i>•</i> No data <i>•</i> No tracking</p>
       <details class="how">
-        <summary>यह कैसे काम करता है / How it works</summary>
-        <p>निर्दलीय। आपका कोई विवरण नहीं लिया जाता। The server keeps one number and nothing about you. Your phone remembers your tap and solves a small puzzle that stops bots. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
+        <summary>यह कैसे काम करता है / How it works, and how to verify the count</summary>
+        <p>निर्दलीय। आपका कोई विवरण नहीं लिया जाता। हर फ़ोन से एक बार।</p>
+        <p>Non-partisan. One tap per phone: your browser remembers that you have stood, so tapping again does nothing. A different phone or browser, or clearing your browser data, can count again; the small puzzle stops bots, not people.</p>
+        <p>The server keeps one number and nothing about you: no IP addresses, no cookies, no logs. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
       </details>
     </footer>
   </section>

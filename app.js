@@ -4,7 +4,7 @@
 
   const $ = (id) => document.getElementById(id);
   const act = $('act'), btn = $('stand'), status = $('stand-status'), shareBox = $('share');
-  const countEl = $('count'), prevEl = $('count-prev'), sinceEl = $('since'), barFill = $('bar-fill'), msText = $('milestone-text');
+  const countEl = $('count'), labelEl = $('count-label'), prevEl = $('count-prev'), sinceEl = $('since'), barFill = $('bar-fill'), msText = $('milestone-text');
   const SITE = location.origin;
   const MARK = 'jkm-stood';                     // the only thing ever stored, and only on this phone
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -62,6 +62,10 @@
   function render() {
     if (!latest) return;
     const total = latest.count + mine;
+    // a zero should read as a beginning, not as a broken counter
+    labelEl.innerHTML = total === 0
+      ? 'अभी शुरुआत है — पहले बनिए<br>Just started — be the first'
+      : 'लोग साथ खड़े हैं<br>people stand with this';
     animateTo(total);
     setMilestone(total);
   }
