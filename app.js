@@ -114,7 +114,7 @@
     btn.disabled = true;
     btn.setAttribute('aria-pressed', 'true');
     status.textContent = justNow
-      ? 'आप गिने गए। अब आगे भेजिए।\nYou’re counted. Now pass it on.'
+      ? 'अब इसे आगे भेजिए।\nNow pass it on.'
       : 'आप पहले ही गिने जा चुके हैं। अब आगे भेजिए।\nYou’re already counted. Pass it on.';
     shareBox.hidden = false;
   }
@@ -143,15 +143,13 @@
 
   // ---------- sharing ----------
   function shareText() {
-    const n = latest ? fmt.format(latest.count + mine) : '';
-    return `🇮🇳 *सत्यमेव जयते*\n\n` +
-      `जंतर मंतर नहीं पहुँच सकते? कोई बात नहीं।\n` +
-      `*एक टैप में खड़े होइए*: एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।${n ? `\nअब तक *${n}* लोग साथ खड़े हैं।` : ''}\n\n` +
-      `Can’t make it to Jantar Mantar?\n` +
-      `*Stand with us in one tap*: for a free, fair and accountable Election Commission.${n ? `\n*${n}* people so far.` : ''}\n\n` +
-      `न नाम, न नंबर, न लॉगिन। / No name, no number, no login.\n\n` +
-      `👉 ${SITE}\n` +
-      `टैप करें, फिर आगे भेजें। / Tap, then pass it on.`;
+    const total = latest ? latest.count + mine : 0;
+    const n = total >= 100 ? `\n\n*${fmt.format(total)}* लोग अब तक / people so far` : '';   // the count only helps once it is big
+    return `🇮🇳 जंतर मंतर नहीं जा सकते? *एक टैप में खड़े होइए।*\n` +
+      `Can’t get to Jantar Mantar? *Stand in one tap.*\n\n` +
+      `स्वतंत्र, निष्पक्ष, जवाबदेह चुनाव आयोग के लिए।\n` +
+      `For a free, fair, accountable Election Commission.` + n + `\n\n` +
+      `👉 ${SITE.replace(/^https?:\/\//, '')}`;
   }
 
   $('share-wa').addEventListener('click', () => {
@@ -211,16 +209,8 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
   });
 
-  // ---------- waving tricolour: the flag image cut into thin strips that rise and fall in turn ----------
-  (() => {
-    const flag = $('flag'), n = 16, w = flag.offsetWidth;
-    for (let i = 0; i < n; i++) {
-      const s = document.createElement('i');
-      s.style.backgroundPosition = `${-(w / n) * i}px 0`;
-      s.style.animationDelay = `${-i * 0.12}s`;
-      flag.appendChild(s);
-    }
-  })();
+  // ---------- tapping the finger works like tapping the button ----------
+  $('hero').addEventListener('click', () => btn.click());
 
   // ---------- start ----------
   if (store.get()) setDone(false); else solveAhead();
