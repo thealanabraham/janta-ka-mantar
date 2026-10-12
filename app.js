@@ -45,7 +45,7 @@
 
   function animateTo(target) {
     const from = shown;
-    if (reduceMotion || from === target) { shown = target; countEl.textContent = fmt.format(target); return; }
+    if (reduceMotion || document.hidden || from === target) { shown = target; countEl.textContent = fmt.format(target); return; }
     const dur = from === 0 ? 1400 : 700, t0 = performance.now();
     const step = (t) => {
       const p = Math.min(1, (t - t0) / dur);
@@ -55,6 +55,8 @@
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
+    // never leave the number short if animation frames are paused (background tab, power saving)
+    setTimeout(() => { shown = target; countEl.textContent = fmt.format(target); }, dur + 100);
   }
 
   function render() {
@@ -142,9 +144,14 @@
   // ---------- sharing ----------
   function shareText() {
     const n = latest ? fmt.format(latest.count + mine) : '';
-    return `सत्यमेव जयते 🇮🇳\n*जनता का मंतर: डिजिटल जंतर मंतर*\n` +
-      `जंतर मंतर नहीं जा सकते? यहाँ खड़े होइए, एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।${n ? ` अब तक ${n} लोग।` : ''}\n` +
-      `Can’t be at Jantar Mantar? Stand at the digital one.${n ? ` ${n} so far.` : ''} One tap, no data.\n\n${SITE}`;
+    return `🇮🇳 *सत्यमेव जयते*\n\n` +
+      `जंतर मंतर नहीं पहुँच सकते? कोई बात नहीं।\n` +
+      `*एक टैप में खड़े होइए*: एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।${n ? `\nअब तक *${n}* लोग साथ खड़े हैं।` : ''}\n\n` +
+      `Can’t make it to Jantar Mantar?\n` +
+      `*Stand with us in one tap*: for a free, fair and accountable Election Commission.${n ? `\n*${n}* people so far.` : ''}\n\n` +
+      `न नाम, न नंबर, न लॉगिन। / No name, no number, no login.\n\n` +
+      `👉 ${SITE}\n` +
+      `टैप करें, फिर आगे भेजें। / Tap, then pass it on.`;
   }
 
   $('share-wa').addEventListener('click', () => {
