@@ -224,7 +224,9 @@ const server = http.createServer(async (req, res) => {
     if ((req.method === 'GET' || req.method === 'HEAD') && STATIC.has(p)) {
       const f = STATIC.get(p);
       if (req.headers['if-none-match'] === f.etag) { res.writeHead(304, SECURITY_HEADERS); return res.end(); }
-      const cache = p === '/' || p.endsWith('.html') ? 'no-cache' : 'public, max-age=3600';
+      // page, script and styles are always re-checked (cheap, thanks to ETag) so updates reach everyone at once;
+      // fonts and images rarely change and can be kept for a day
+      const cache = /\.(woff2|png|svg)$/.test(p) ? 'public, max-age=86400' : 'no-cache';
       return send(res, 200, req.method === 'HEAD' ? Buffer.alloc(0) : f.body, f.type, { ETag: f.etag, 'Cache-Control': cache });
     }
     return send(res, 404, 'Not found', 'text/plain; charset=utf-8');
