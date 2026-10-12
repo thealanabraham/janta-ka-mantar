@@ -3,7 +3,7 @@
 # Normally run automatically by cloud-config.yaml. To run by hand, as root:
 #   DOMAIN=yourdomain.org REPO=https://github.com/you/janta-ka-mantar.git bash setup.sh
 set -euo pipefail
-: "${DOMAIN:?set DOMAIN}"; : "${REPO:?set REPO}"; SINCE="${SINCE:-2026-10-11}"
+: "${DOMAIN:?set DOMAIN}"; : "${REPO:?set REPO}"; SINCE="${SINCE:-2026-10-12}"
 APP=/opt/janta
 export DEBIAN_FRONTEND=noninteractive
 

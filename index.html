@@ -20,8 +20,8 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/mukta-devanagari-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/hand.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="/style.css?v=10">
-<script src="/app.js?v=10" defer></script>
+<link rel="stylesheet" href="/style.css?v=11">
+<script src="/app.js?v=11" defer></script>
 </head>
 <body>
 <main class="page">
@@ -61,23 +61,24 @@
         <p class="share-more"><button type="button" class="link" id="share-img">तस्वीर / Image</button><span aria-hidden="true">·</span><button type="button" class="link" id="share-link">लिंक / Link</button></p>
       </div>
 
-      <p class="private">No login · No name required · No tracking</p>
+
+      <p class="cause"><span lang="hi">एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।</span><span lang="en">For a free, fair and accountable Election Commission.</span></p>
     </div>
   </section>
 
-  <section class="about" aria-label="About">
-    <p class="cause"><span lang="hi">एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।</span><span lang="en">For a free, fair and accountable Election Commission.</span></p>
-    <div class="tally">
-      <div class="bar" aria-hidden="true"><div class="bar-fill" id="bar-fill"></div></div>
-      <p class="meta"><span id="since">11 अक्टूबर 2026 से / since 11 Oct 2026</span><span id="milestone-text"></span></p>
-    </div>
+  <footer class="foot">
+    <p class="private">No login · No name required · No tracking</p>
     <details class="how">
       <summary>यह कैसे काम करता है / How it works · verify the count</summary>
       <p lang="hi">निर्दलीय। न लॉगिन, न नाम, न ट्रैकिंग। आपका कोई विवरण नहीं लिया जाता। हर फ़ोन से एक बार।</p>
       <p>Non-partisan. One tap per phone: your browser remembers that you have stood, so tapping again does nothing. A different phone or browser, or clearing your browser data, can count again; the small puzzle stops bots, not people.</p>
       <p>The server keeps one number and nothing about you: no IP addresses, no cookies, no logs. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
     </details>
-  </section>
+    <div class="tally">
+      <p class="meta"><span id="since">12 अक्टूबर 2026 से / since 12 Oct 2026</span><span id="milestone-text"></span></p>
+      <div class="bar" aria-hidden="true"><div class="bar-fill" id="bar-fill"></div></div>
+    </div>
+  </footer>
 </main>
 <canvas id="card" width="1080" height="1350" hidden></canvas>
 </body>

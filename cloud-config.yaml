@@ -6,7 +6,7 @@ runcmd:
   - |
     export DOMAIN="jantakamantar.org"                                   # your domain (filled in)
     export REPO="https://github.com/thealanabraham/janta-ka-mantar.git"   # your public code (filled in)
-    export SINCE="2026-10-11"
+    export SINCE="2026-10-12"
     apt-get update -q && apt-get install -y -q git
     git clone --depth 1 "$REPO" /opt/janta
     bash /opt/janta/setup.sh

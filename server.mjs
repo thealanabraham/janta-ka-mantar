@@ -21,7 +21,7 @@ const CFG = {
   host: process.env.HOST || '127.0.0.1',               // listen only locally; the TLS proxy sits in front
   port: Number(process.env.PORT || 8787),
   dataDir: path.resolve(process.env.DATA_DIR || path.join(HERE, 'data')),
-  since: process.env.SINCE || '2026-10-11',
+  since: process.env.SINCE || '2026-10-12',
   domain: process.env.SITE_DOMAIN || '127.0.0.1:8787',      // e.g. jantakamantar.org
   source: process.env.SOURCE_URL || '#',                      // link to the public code            // the date shown under the counter
   batchSeconds: Number(process.env.BATCH_SECONDS || 60),   // count is published in batches, never per tap
@@ -60,6 +60,9 @@ const KEYS = loadKeys();
 const STATE_FILE = path.join(CFG.dataDir, 'state.json');
 let state = { count: 0, since: CFG.since, history: [] };
 if (fs.existsSync(STATE_FILE)) state = { ...state, ...JSON.parse(fs.readFileSync(STATE_FILE, 'utf8')) };
+// Public launch date. Earlier dates were set-up tests; the shown 'since' never goes earlier than this.
+const LAUNCH_DATE = '2026-10-12';
+if (!state.since || state.since < LAUNCH_DATE) state.since = LAUNCH_DATE;
 
 function saveState() {
   const tmp = STATE_FILE + '.tmp';

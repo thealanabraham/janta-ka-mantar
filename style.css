@@ -11,11 +11,13 @@
   --paper: #FBFAF3;          /* the photograph's own paper */
   --ink: #14213D;
   --ink-soft: #4B556B;
-  --mute: #6F7686;           /* still 4.5:1 on paper */
+  --mute: #626979;           /* 5:1 on paper */
   --saffron: #F2801F;
   --sun: #F2B63A;
   --green: #1F7A3B;
   --line: #E6E1D6;
+  --button: #33415C;        /* softer slate navy: 9.9:1 with white text */
+  --button-hover: #2A3650;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -37,7 +39,7 @@ button { font: inherit; color: inherit; }
 .page {
   max-width: 26rem;
   margin: 0 auto;
-  padding: max(26px, env(safe-area-inset-top)) 24px max(32px, env(safe-area-inset-bottom));
+  padding: max(34px, env(safe-area-inset-top)) 24px max(28px, env(safe-area-inset-bottom));
   text-align: center;
   container-type: inline-size;
 }
@@ -53,7 +55,7 @@ button { font: inherit; color: inherit; }
 .brand-sub { font-size: .74rem; color: var(--ink-soft); }
 
 /* ---- The question: large, light and calm, like the poster ---- */
-.question { margin: 2.6rem 0 0; font-weight: 400; }
+.question { margin: 2.3rem 0 0; font-weight: 400; }
 .question .hi {
   display: block;
   font-size: min(2.05rem, calc(100cqi / 10.4));
@@ -70,8 +72,8 @@ button { font: inherit; color: inherit; }
 .act { display: flex; flex-direction: column; align-items: center; }
 .hero {
   position: relative;
-  width: 88vw; width: min(100cqi, 44svh, 380px); aspect-ratio: 424 / 400;
-  margin-top: 1.2rem;
+  width: 88vw; width: min(100cqi, 45svh, 380px); aspect-ratio: 424 / 400;
+  margin-top: 1rem;
   left: -5%;                                 /* puts the finger, not the photo, on the centre line */
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -122,20 +124,20 @@ button { font: inherit; color: inherit; }
 .stand, .share-wa {
   display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
   width: 100%; max-width: 20rem; min-height: 50px;
-  margin-top: 1.5rem;
+  margin-top: 1.3rem;
   padding: .55rem 1.4rem;
   border: 0; border-radius: 999px;
-  background: var(--ink); color: #FFFFFF;
+  background: var(--button); color: #FFFFFF;
   font-size: 1rem; line-height: 1.2; white-space: nowrap;
   cursor: pointer;
   transition: transform .12s ease, background-color .3s ease;
   -webkit-tap-highlight-color: transparent; touch-action: manipulation;
 }
-.stand:hover, .share-wa:hover { background: #1D2D52; }
+.stand:hover, .share-wa:hover { background: var(--button-hover); }
 .stand:active, .share-wa:active { transform: scale(.97); }
 .stand .en, .share-wa .en { font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; }
 .dot { color: var(--saffron); }
-.act[data-state="working"] .stand { background: #2A3A62; cursor: progress; }
+.act[data-state="working"] .stand { background: #4A5672; cursor: progress; }
 .act[data-state="done"] .stand, .act[data-state="done"] .how-to { display: none; }
 
 .how-to { margin-top: .5rem; font-size: .74rem; color: var(--ink-soft); }
@@ -150,29 +152,46 @@ button { font: inherit; color: inherit; }
 .share-more { margin-top: .4rem; display: flex; justify-content: center; align-items: center; gap: .6rem; color: var(--mute); font-size: .8rem; }
 .link { padding: .4rem .2rem; border: 0; background: none; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); cursor: pointer; }
 
-.private { margin-top: 1.1rem; font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
-
-/* ---- Far below: small and quiet ---- */
-.about { margin-top: 5rem; color: var(--mute); }
-.cause { font-size: .78rem; line-height: 1.5; color: var(--ink-soft); }
+.cause { margin-top: 1.6rem; font-size: .82rem; line-height: 1.5; color: var(--ink); }
 .cause span { display: block; }
-.tally { display: flex; flex-direction: column; align-items: center; gap: .4rem; margin-top: 1.1rem; }
-.bar { display: flex; justify-content: flex-end; width: 6rem; height: 1.5px; background: var(--saffron); }
-.bar-fill { height: 100%; width: 98%; background: var(--line); transition: width 1.2s ease; }
-.meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 .8rem; font-size: .68rem; }
-.how { margin-top: .9rem; font-size: .7rem; }
-.how summary { cursor: pointer; padding: .3rem 0; color: var(--ink-soft); }
+.cause span:last-child { color: var(--ink-soft); }
+
+/* ---- Footer: one small, tidy block ---- */
+.foot { margin-top: 2.6rem; font-size: .72rem; color: var(--mute); }
+.private { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; }
+.how { margin-top: .5rem; }
+.how summary { cursor: pointer; padding: .35rem 0; color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .how p { margin-top: .5rem; text-align: left; line-height: 1.55; color: var(--ink-soft); }
+.tally { margin-top: .3rem; }
+.meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 .5rem; font-size: .68rem; }
+.meta span + span::before { content: "·"; margin-right: .5rem; }
+.bar { display: none; }          /* the milestone is stated in words; the bar is kept only for the script */
 
 /* ---- Larger screens: the same portrait poster, just more air around it ---- */
 @media (min-width: 720px) {
-  .page { max-width: 30rem; padding-top: 2.4rem; }
-  .question .hi { font-size: 2.2rem; }
-  .question .en { font-size: 1.15rem; }
+  .page { max-width: 38rem; padding-top: clamp(1.6rem, 5vh, 3.4rem); }
+  .brand-name { font-size: 1.15rem; }
+  .brand-sub { font-size: .82rem; }
+  .question { margin-top: clamp(1.4rem, 4.5vh, 3rem); }
+  .question .hi { font-size: clamp(2.3rem, 4.4vh, 2.85rem); }
+  .question .en { font-size: 1.42rem; }
+  .question .rule { width: 1.8rem; margin: clamp(.6rem, 1.6vh, 1rem) auto clamp(.5rem, 1.2vh, .75rem); }
+  .hero { width: min(100cqi, max(250px, (100vh - 470px) * 1.06), 500px); margin-top: clamp(.6rem, 2vh, 1.4rem); }
+  .now { font-size: .7rem; }
+  .count { font-size: 2.2rem; }
+  .count-label { font-size: .85rem; }
+  .stand, .share-wa { max-width: 25rem; min-height: 58px; font-size: 1.2rem; margin-top: clamp(1rem, 2.4vh, 1.5rem); }
+  .stand .en, .share-wa .en { font-size: .9rem; }
+  .how-to { font-size: .85rem; }
+  .cause { font-size: .95rem; margin-top: 1.9rem; }
+  .foot { margin-top: 3rem; font-size: .78rem; }
+  .private { font-size: .66rem; }
+  .meta { font-size: .74rem; }
 }
-@media (max-height: 700px) {
-  .question { margin-top: 1.8rem; }
-  .hero { margin-top: .8rem; }
+@media (max-height: 700px) and (max-width: 719px) {
+  .page { padding-top: max(24px, env(safe-area-inset-top)); }
+  .question { margin-top: 1.7rem; }
+  .hero { margin-top: .7rem; }
   .stand { margin-top: 1.1rem; }
 }
 
