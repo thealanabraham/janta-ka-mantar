@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>जनता का मंतर / Janta ka Mantar</title>
 <meta name="description" content="जंतर मंतर नहीं जा सकते? यहाँ खड़े होइए। For a free, fair and accountable Election Commission. One tap. No name, no data.">
-<meta name="theme-color" content="#FBF9F4">
+<meta name="theme-color" content="#FBFAF3">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
 <meta name="google" content="notranslate">
@@ -20,66 +20,63 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/mukta-devanagari-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/hand.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="/style.css?v=8">
-<script src="/app.js?v=8" defer></script>
+<link rel="stylesheet" href="/style.css?v=9">
+<script src="/app.js?v=9" defer></script>
 </head>
 <body>
 <main class="page">
   <header class="brand">
-    <p class="brand-name">जनता का मंतर</p>
-    <p class="brand-sub">The digital Jantar Mantar</p>
+    <p class="brand-name" lang="hi">जनता का मंतर</p>
+    <p class="brand-sub" lang="en">The Digital Jantar Mantar</p>
   </header>
 
   <h1 class="question">
-    <span class="hi">अगर आप जा पाते,<br>तो क्या आप वहाँ होते?</span>
-    <span class="rule" aria-hidden="true"></span>
-    <span class="line en">If you could, would you be there?</span>
+    <span class="hi" lang="hi">अगर आप जा पाते,<br>तो क्या आप वहाँ होते?</span>
+    <span class="en" lang="en">If you could, would you be there?</span>
   </h1>
 
-  <section class="act" id="act" data-state="ready">
+  <section class="act" id="act" data-state="ready" aria-label="अपना समर्थन दर्ज करें / Add your support">
     <div class="hero" id="hero" aria-hidden="true">
       <span class="halo"></span>
       <span class="photo"><img class="hand" src="/hand.webp" width="424" height="400" alt="" decoding="async" fetchpriority="high"></span>
     </div>
 
-    <p class="count-row" aria-live="polite">
-      <span class="now">अभी<br>Now</span>
-      <span class="prev" id="count-prev"></span>
-      <span class="count" id="count">0</span>
-      <span class="plus" id="count-plus">+1</span>
-      <span class="count-label" id="count-label">लोग साथ खड़े हैं<br>people stand with this</span>
-    </p>
+    <div class="pledge">
+      <p class="count-row">
+        <span class="now">अभी<br>Now</span>
+        <span class="prev" id="count-prev" aria-hidden="true"></span>
+        <span class="count" id="count">0</span>
+        <span class="count-label" id="count-label">लोग साथ खड़े हैं<br>people stand with this</span>
+      </p>
 
-    <button class="stand" id="stand" type="button" aria-describedby="stand-status">
-      <span class="when-ready"><span class="hi">मैं भी साथ हूँ — अपना समर्थन दर्ज करें</span><span class="en">I stand with this — tap to add your support →</span></span>
-      <span class="when-done"><span class="hi">✓ आपका समर्थन दर्ज हो गया</span><span class="en">Your support is added</span></span>
-    </button>
-    <p class="private">न लॉगिन · न नाम · न ट्रैकिंग<span>No login · No name required · No tracking</span></p>
+      <button class="stand" id="stand" type="button" aria-describedby="stand-status">
+        <span class="hi" lang="hi">मैं भी साथ हूँ</span>
+        <span class="en" lang="en">I stand with this</span>
+        <span class="how-to"><span lang="hi">अपना समर्थन दर्ज करें</span> · <span lang="en">Tap to add your support</span></span>
+      </button>
+      <p class="status" id="stand-status" role="status"></p>
 
+      <div class="share" id="share" hidden>
+        <button type="button" class="share-wa" id="share-wa"><span class="hi" lang="hi">आगे भेजें</span><span class="en" lang="en">Pass it on · WhatsApp</span></button>
+        <p class="share-more"><button type="button" class="link" id="share-img">तस्वीर / Image</button><span aria-hidden="true">·</span><button type="button" class="link" id="share-link">लिंक / Link</button></p>
+      </div>
 
-    <p class="status" id="stand-status" role="status"></p>
-    <div class="share" id="share" hidden>
-      <button type="button" class="share-btn share-wa" id="share-wa">WhatsApp पर भेजें / Send on WhatsApp</button>
-      <button type="button" class="share-btn" id="share-img">तस्वीर / Image</button>
-      <button type="button" class="share-btn" id="share-link">लिंक / Link</button>
+      <p class="private">No login · No name required · No tracking</p>
     </div>
   </section>
 
-  <section class="about">
-    <p class="cause">एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।<span>For a free, fair and accountable Election Commission.</span></p>
+  <section class="about" aria-label="About">
+    <p class="cause"><span lang="hi">एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।</span><span lang="en">For a free, fair and accountable Election Commission.</span></p>
     <div class="tally">
-      <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+      <div class="bar" aria-hidden="true"><div class="bar-fill" id="bar-fill"></div></div>
       <p class="meta"><span id="since">11 अक्टूबर 2026 से / since 11 Oct 2026</span><span id="milestone-text"></span></p>
     </div>
-    <footer class="foot">
-      <p class="tags">Non-partisan <i>•</i> No name <i>•</i> No data <i>•</i> No tracking</p>
-      <details class="how">
-        <summary>यह कैसे काम करता है / How it works, and how to verify the count</summary>
-        <p>निर्दलीय। आपका कोई विवरण नहीं लिया जाता। हर फ़ोन से एक बार।</p>
-        <p>Non-partisan. One tap per phone: your browser remembers that you have stood, so tapping again does nothing. A different phone or browser, or clearing your browser data, can count again; the small puzzle stops bots, not people.</p>
-        <p>The server keeps one number and nothing about you: no IP addresses, no cookies, no logs. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
-      </details>
-    </footer>
+    <details class="how">
+      <summary>यह कैसे काम करता है / How it works · verify the count</summary>
+      <p lang="hi">निर्दलीय। न लॉगिन, न नाम, न ट्रैकिंग। आपका कोई विवरण नहीं लिया जाता। हर फ़ोन से एक बार।</p>
+      <p>Non-partisan. One tap per phone: your browser remembers that you have stood, so tapping again does nothing. A different phone or browser, or clearing your browser data, can count again; the small puzzle stops bots, not people.</p>
+      <p>The server keeps one number and nothing about you: no IP addresses, no cookies, no logs. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
+    </details>
   </section>
 </main>
 <canvas id="card" width="1080" height="1350" hidden></canvas>

@@ -1,21 +1,20 @@
-/* Janta ka Mantar: an editorial poster. A raised, inked finger in front of a sun.
-   One light look on every device, like a printed placard. */
+/* Janta ka Mantar: a poster first, a page second.
+   One question, one inked finger in front of a sun, one button. Everything else waits below. */
 
 @font-face { font-family: "Mukta"; src: url("/mukta-devanagari-400.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0900-097F, U+200C-200D, U+25CC; }
 @font-face { font-family: "Mukta"; src: url("/mukta-devanagari-800.woff2") format("woff2"); font-weight: 800; font-display: swap; unicode-range: U+0900-097F, U+200C-200D, U+25CC; }
-@font-face { font-family: "Mukta"; src: url("/mukta-latin-400.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0000-00FF, U+2014, U+2018-201D, U+2022, U+2026, U+20B9, U+2713; }
-@font-face { font-family: "Mukta"; src: url("/mukta-latin-800.woff2") format("woff2"); font-weight: 800; font-display: swap; unicode-range: U+0000-00FF, U+2014, U+2018-201D, U+2022, U+2026, U+20B9, U+2713; }
+@font-face { font-family: "Mukta"; src: url("/mukta-latin-400.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0000-00FF, U+2014, U+2018-201D, U+2022, U+2026, U+20B9, U+2192, U+2713; }
+@font-face { font-family: "Mukta"; src: url("/mukta-latin-800.woff2") format("woff2"); font-weight: 800; font-display: swap; unicode-range: U+0000-00FF, U+2014, U+2018-201D, U+2022, U+2026, U+20B9, U+2192, U+2713; }
 
 :root {
   color-scheme: light;
-  --paper: #FBF9F4;          /* matches the photograph's paper exactly */
+  --paper: #FBFAF3;          /* the photograph's own paper */
   --ink: #14213D;
   --ink-soft: #4B556B;
-  --mute: #8A8F9C;
+  --mute: #6F7686;           /* still 4.5:1 on paper */
   --saffron: #F2801F;
   --sun: #F2B63A;
-  --green: #1F8A3B;
-  --violet: #2A1B5C;
+  --green: #1F7A3B;
   --line: #E6E1D6;
 }
 
@@ -32,50 +31,53 @@ body {
 }
 p { margin: 0; }
 a { color: inherit; text-underline-offset: 3px; }
-:focus-visible { outline: 3px solid var(--saffron); outline-offset: 3px; border-radius: 10px; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--saffron); outline-offset: 3px; border-radius: 12px; }
 
 .page {
-  max-width: 26rem;
+  max-width: 27rem;
   margin: 0 auto;
-  padding: max(18px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
+  padding: max(22px, env(safe-area-inset-top)) 22px max(28px, env(safe-area-inset-bottom));
+  text-align: center;
   container-type: inline-size;
 }
 
-/* ---- Masthead ---- */
-.brand { text-align: center; }
+/* ---- Masthead: two lines, centred, the tricolour only as two short rules ---- */
 .brand-name {
-  display: flex; align-items: center; justify-content: center; gap: .8rem;
-  font-weight: 800; font-size: 1.1rem; line-height: 1.2;
+  display: flex; align-items: center; justify-content: center; gap: .75rem;
+  font-weight: 800; font-size: 1.05rem; line-height: 1.25;
 }
-.brand-name::before, .brand-name::after { content: ""; width: 2.2rem; height: 1.5px; }
+.brand-name::before, .brand-name::after { content: ""; width: 2rem; height: 2px; }
 .brand-name::before { background: var(--saffron); }
 .brand-name::after { background: var(--green); }
-.brand-sub { font-size: .74rem; color: var(--ink-soft); letter-spacing: .01em; }
+.brand-sub { font-size: .76rem; color: var(--ink-soft); }
 
-/* ---- The question: Hindi leads, large and light; a short rule; English on one line ---- */
-.question { position: relative; z-index: 2; margin: 1.6rem 0 0; font-weight: 400; }
+/* ---- The question: the loudest thing on the page ---- */
+.question { margin: 2rem 0 0; font-weight: 800; }
 .question .hi {
   display: block;
-  font-size: min(2rem, calc(100cqi / 10.6));
-  line-height: 1.3;
+  font-size: min(2.3rem, calc(100cqi / 9.6));
+  line-height: 1.22;
+  letter-spacing: -.005em;
 }
-.question .rule { display: block; width: 1.4rem; height: 1.5px; margin: .6rem 0 .5rem; background: var(--ink); }
 .question .en {
-  display: block; white-space: nowrap;
-  font-size: min(1.15rem, calc(100cqi / 17.5)); line-height: 1.35; color: var(--ink-soft);
+  display: block; margin-top: .45rem;
+  font-weight: 400; white-space: nowrap;
+  font-size: min(1.2rem, calc(100cqi / 17));
+  line-height: 1.3; color: var(--ink-soft);
 }
 
 /* ---- The finger and the sun ---- */
 .act { display: flex; flex-direction: column; align-items: center; }
 .hero {
   position: relative;
-  width: 212px; height: 200px;               /* 424 x 400 photograph */
-  margin-top: .5rem;
-  left: -5.7%;                               /* the finger, not the photo, sits on the centre line */
+  width: min(282px, 76cqi); aspect-ratio: 424 / 400;
+  margin-top: 1.1rem;
+  left: -4%;                                 /* puts the finger, not the photo, on the centre line */
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.photo {                                      /* soft edges, so the photograph melts into the page on any screen */
+.photo {
   position: absolute; inset: 0;
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 4%, #000 92%, transparent);
           mask-image: linear-gradient(180deg, transparent, #000 4%, #000 92%, transparent);
@@ -85,134 +87,121 @@ a { color: inherit; text-underline-offset: 3px; }
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 96%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 12%, #000 96%, transparent);
 }
-.halo {                                       /* a ring that breathes out of the sun on tap */
-  position: absolute; left: 55.7%; top: 46%;
+.halo {
+  position: absolute; z-index: 1; left: 55.7%; top: 46%;
   width: 75%; aspect-ratio: 1; border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  border: 2px solid var(--sun);
-  opacity: 0; pointer-events: none; z-index: 1;
+  border: 1.5px solid var(--sun);
+  transform: translate(-50%, -50%);
+  opacity: 0; pointer-events: none;
 }
+.act[data-state="working"] .hand { transform: translateY(-5px); transition: transform .4s cubic-bezier(.3, .7, .4, 1); }
+.act.just .hand { animation: rise 1s cubic-bezier(.3, .7, .4, 1) both; }
+.act.just .halo { animation: halo 1.6s ease-out .1s both; }
+@keyframes rise { 0% { transform: translateY(-5px); } 45% { transform: translateY(-10px); } 100% { transform: none; } }
+@keyframes halo { 0% { opacity: .8; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.35); } }
 
-.act[data-state="ready"] .hand { animation: breathe 4.5s ease-in-out infinite; }
-.act[data-state="working"] .hand { transform: translateY(-6px); transition: transform .35s cubic-bezier(.3, .7, .4, 1); }
-.act[data-state="done"].just .hand { animation: rise .9s cubic-bezier(.3, .7, .4, 1) both; }
-.act[data-state="done"].just .halo { animation: halo 1.4s ease-out .15s 2 both; }
-@keyframes breathe { 50% { transform: translateY(-3px); } }
-@keyframes rise { 0% { transform: translateY(-6px); } 45% { transform: translateY(-14px) scale(1.02); } 100% { transform: none; } }
-@keyframes halo { 0% { opacity: .9; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.45); } }
+/* ---- Count, button, assurance: one tight group ---- */
+.pledge { width: 100%; position: relative; z-index: 1; margin-top: -.4rem; }
 
-/* ---- The button: says exactly what happens ---- */
-.stand {
-  position: relative; z-index: 1;
-  width: 100%;
-  margin-top: .85rem;
-  padding: .75rem 1rem .7rem;
-  border: 0; border-radius: 14px;
-  background: var(--ink); color: #FFFFFF;
-  font: inherit; line-height: 1.25; text-align: center;
-  cursor: pointer;
-  box-shadow: 0 12px 26px -16px rgba(20, 33, 61, .8);
-  transition: transform .15s ease, background-color .35s ease, color .35s ease;
-  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
-}
-.stand:hover { background: #1D2D52; }
-.stand:active { transform: scale(.985); }
-.stand[disabled] { cursor: default; }
-.stand .when-ready, .stand .when-done { display: block; }
-.stand .hi { display: block; font-weight: 800; font-size: min(1.06rem, calc(100cqi / 20.5)); white-space: nowrap; }
-.stand .en {
-  display: block; margin-top: .2rem;
-  font-size: min(.72rem, calc(100cqi / 30)); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
-  opacity: .78;
-}
-.stand .when-done { display: none; }
-.act[data-state="working"] .stand { background: #26345A; }
-.act[data-state="done"] .stand { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
-.act[data-state="done"] .stand .when-ready { display: none; }
-.act[data-state="done"] .stand .when-done { display: block; }
-.act[data-state="done"] .stand .hi { color: var(--green); }
-
-.private { margin-top: .55rem; font-size: .76rem; line-height: 1.35; color: var(--ink-soft); text-align: center; }
-.private span { display: block; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
-
-/* ---- Now / count ---- */
-.count-row {
-  display: flex; align-items: center; justify-content: center; gap: .6rem;
-  margin-top: -.3rem; position: relative; z-index: 1;
-}
+.count-row { display: flex; align-items: center; justify-content: center; gap: .55rem; }
 .now {
   font-size: .62rem; line-height: 1.2; letter-spacing: .12em; text-transform: uppercase; font-weight: 800;
-  color: var(--saffron); text-align: right;
-  padding-right: .6rem; border-right: 1.5px solid var(--line);
+  color: #B45309; text-align: right;
+  padding-right: .55rem; border-right: 1.5px solid var(--line);
 }
-.count {
-  font-weight: 800; font-size: 2.1rem; line-height: 1;
-  font-variant-numeric: tabular-nums; color: var(--ink);
-}
-.prev {
-  display: none;
-  font-size: 1.3rem; line-height: 1; color: var(--mute); font-variant-numeric: tabular-nums;
-}
+.count { font-weight: 800; font-size: 1.9rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.prev { display: none; font-size: 1.15rem; line-height: 1; color: var(--mute); font-variant-numeric: tabular-nums; }
 .prev::after { content: " →"; color: var(--saffron); }
-.plus {
-  display: none;
-  font-weight: 800; font-size: .8rem; color: var(--green);
-}
-.count-label { font-size: .72rem; line-height: 1.25; color: var(--ink-soft); text-align: left; }
-.act.just .prev, .act.just .plus { display: inline-block; animation: fadein .5s ease both; }
-.act.just .count { animation: pop .6s cubic-bezier(.3, .7, .4, 1) .7s both; }
-@keyframes fadein { from { opacity: 0; transform: translateY(4px); } }
-@keyframes pop { 40% { transform: scale(1.12); color: var(--green); } }
+.count-label { font-size: .74rem; line-height: 1.25; color: var(--ink-soft); text-align: left; }
+.act.just .prev { display: inline-block; animation: fadein .4s ease both; }
+.act.just .count { animation: settle .6s ease .75s both; }
+@keyframes fadein { from { opacity: 0; } }
+@keyframes settle { 50% { color: var(--green); } }
 
+.stand, .share-wa {
+  display: block; width: 100%;
+  margin-top: 1rem;
+  padding: .85rem 1rem .8rem;
+  border: 0; border-radius: 16px;
+  background: var(--ink); color: #FFFFFF;
+  line-height: 1.2; text-align: center;
+  cursor: pointer;
+  box-shadow: 0 14px 28px -18px rgba(20, 33, 61, .85);
+  transition: transform .12s ease, background-color .3s ease;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.stand:hover, .share-wa:hover { background: #1D2D52; }
+.stand:active, .share-wa:active { transform: scale(.985); }
+.stand .hi, .share-wa .hi { display: block; font-weight: 800; font-size: 1.3rem; }
+.stand .en, .share-wa .en {
+  display: block; margin-top: .1rem;
+  font-size: .8rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+}
+.stand .how-to {
+  display: block; margin: .5rem auto 0; padding-top: .45rem; width: fit-content;
+  border-top: 1.5px solid var(--saffron);
+  font-size: .72rem; color: rgba(255, 255, 255, .82); letter-spacing: .02em; white-space: nowrap;
+}
+.act[data-state="working"] .stand { background: #26345A; cursor: progress; }
+.act[data-state="done"] .stand { display: none; }
+
+.status { margin-top: .7rem; font-size: .85rem; line-height: 1.4; color: var(--ink-soft); }
 .status:empty { display: none; }
-.status { margin-top: .7rem; font-size: .8rem; line-height: 1.4; color: var(--ink-soft); white-space: pre-line; text-align: center; }
+.act[data-state="done"] .status { margin-top: .9rem; color: var(--green); font-weight: 800; }
 
-.share { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; width: 100%; margin-top: .7rem; }
 .share[hidden] { display: none; }
-.share-btn {
-  padding: .6rem .7rem;
-  border: 1px solid var(--line); border-radius: 12px;
-  background: #FFFFFF; color: var(--ink);
-  font: inherit; font-size: .86rem; font-weight: 800; cursor: pointer;
-}
-.share-wa { grid-column: 1 / -1; background: #1F7A4D; border-color: #1F7A4D; color: #FFFFFF; }
-.share-btn:active { transform: scale(.98); }
+.share-wa { margin-top: .7rem; }
+.share-wa .en { letter-spacing: .1em; }
+.share-more { margin-top: .55rem; display: flex; justify-content: center; align-items: center; gap: .6rem; color: var(--mute); font-size: .85rem; }
+.link { padding: .35rem .2rem; border: 0; background: none; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); cursor: pointer; }
 
-/* ---- Lower down: the cause, progress, and how it works ---- */
-.about { margin-top: 2.6rem; text-align: center; }
-.cause { font-size: .9rem; line-height: 1.45; color: var(--ink); }
-.cause span { display: block; font-size: .82rem; color: var(--ink-soft); }
-.tally { display: flex; flex-direction: column; align-items: center; gap: .4rem; margin-top: 1.1rem; }
-.bar {
-  display: flex; justify-content: flex-end;
-  width: 50%; height: 3px; border-radius: 2px; overflow: hidden;
-  background: linear-gradient(90deg, var(--saffron), #EDE6D6 50%, var(--green));
-}
+.private { margin-top: .85rem; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+
+/* ---- Below the fold: quiet, small, still readable ---- */
+.about { margin-top: 3.2rem; padding-top: 1.6rem; position: relative; }
+.about::before { content: ""; position: absolute; top: 0; left: 50%; width: 1.6rem; height: 1.5px; background: var(--ink); transform: translateX(-50%); }
+.cause span { display: block; }
+.cause span:first-child { font-size: .95rem; }
+.cause span:last-child { font-size: .85rem; color: var(--ink-soft); }
+.tally { display: flex; flex-direction: column; align-items: center; gap: .45rem; margin-top: 1.3rem; }
+.bar { display: flex; justify-content: flex-end; width: 9rem; height: 2px; background: var(--saffron); }
 .bar-fill { height: 100%; width: 98%; background: var(--line); transition: width 1.2s ease; }
-.meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 .9rem; font-size: .7rem; color: var(--mute); }
-.foot { margin-top: 1.6rem; font-size: .72rem; line-height: 1.5; color: var(--mute); }
-.tags { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; }
-.tags i { font-style: normal; margin: 0 .35em; }
-.how { margin-top: .5rem; }
-.how summary { cursor: pointer; color: var(--ink-soft); padding: .15rem 0; }
-.how p { margin-top: .4rem; text-align: left; }
+.meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 .9rem; font-size: .74rem; color: var(--mute); }
+.how { margin-top: 1.2rem; font-size: .78rem; color: var(--ink-soft); }
+.how summary { cursor: pointer; padding: .3rem 0; }
+.how p { margin-top: .55rem; text-align: left; line-height: 1.55; }
 
-/* Short phones: shrink the photograph, never the words */
-@media (max-height: 700px) {
-  .hero { width: 186px; height: 175px; }
-  .question { margin-top: 1.2rem; }
+/* ---- Phones with little height: shrink the photograph first, never the words or the button ---- */
+@media (max-height: 700px) and (max-width: 719px) {
+  .question { margin-top: 1.5rem; }
+  .hero { width: min(228px, 64cqi); margin-top: .6rem; }
 }
-@media (max-height: 600px) {
-  .hero { width: 150px; height: 142px; }
+
+/* ---- Wide screens: the poster splits — words and action on the left, the finger on the right ---- */
+@media (min-width: 900px) {
+  .page {
+    max-width: 62rem; padding: 2.2rem 3rem 3rem;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 4rem;
+    grid-template-areas: "brand brand" "q art" "pledge art" "about about";
+    grid-template-rows: auto auto 1fr auto;
+    text-align: left;
+  }
+  .brand { grid-area: brand; text-align: center; }
+  .question { grid-area: q; align-self: end; margin-top: 3.5rem; }
+  .question .hi { font-size: 2.9rem; }
+  .question .en { font-size: 1.3rem; }
+  .act { display: contents; }
+  .hero { grid-area: art; align-self: center; justify-self: center; width: 400px; margin-top: 2.5rem; left: -2%; }
+  .pledge { grid-area: pledge; margin-top: 2rem; max-width: 26rem; }
+  .count-row, .share-more { justify-content: flex-start; }
+  .about { grid-area: about; max-width: 32rem; justify-self: center; text-align: center; margin-top: 3.5rem; }
 }
-@media (min-width: 720px) {
-  .page { max-width: 30rem; }
-  .hero { width: 244px; height: 230px; }
+@media (min-width: 900px) and (max-height: 760px) {
+  .question { margin-top: 2rem; }
+  .hero { width: 340px; margin-top: 1rem; }
+  .about { margin-top: 2.5rem; }
 }
-@media (min-width: 720px) and (max-height: 760px) {
-  .hero { width: 206px; height: 194px; }
-  .question { margin-top: 1.1rem; }
-}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
 }
