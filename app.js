@@ -114,8 +114,8 @@
     btn.disabled = true;
     btn.setAttribute('aria-pressed', 'true');
     status.textContent = justNow
-      ? 'आप गिने गए। अब आगे भेजिए। / You’re counted. Now pass it on.'
-      : 'आप पहले ही गिने जा चुके हैं। अब आगे भेजिए। / You’re already counted. Pass it on.';
+      ? 'आप गिने गए। अब आगे भेजिए।\nYou’re counted. Now pass it on.'
+      : 'आप पहले ही गिने जा चुके हैं। अब आगे भेजिए।\nYou’re already counted. Pass it on.';
     shareBox.hidden = false;
   }
 
@@ -123,7 +123,7 @@
     if (act.dataset.state !== 'ready') return;
     act.dataset.state = 'working';
     btn.disabled = true;
-    status.textContent = 'जोड़ रहे हैं… / Adding you…';
+    status.textContent = 'जोड़ रहे हैं…\nAdding you…';
     try {
       if (!solution) solveAhead();
       await submit();
@@ -136,7 +136,7 @@
     } catch {
       act.dataset.state = 'ready';
       btn.disabled = false;
-      status.textContent = 'नहीं जुड़ सका। फिर से टैप करें। / Couldn’t connect. Tap again.';
+      status.textContent = 'नहीं जुड़ सका। फिर से टैप करें।\nCouldn’t connect. Tap again.';
       solveAhead();
     }
   });
