@@ -146,14 +146,14 @@ function verifySolution({ challenge, sig, nonce }) {
 
 // ---------- static files: only these, loaded once at startup (no path traversal is possible) ----------
 const PUBLIC_FILES = [
-  'index.html', 'style.css', 'app.js', 'pow.js', 'flag.svg', 'icon.svg', 'og.png',
+  'index.html', 'style.css', 'app.js', 'pow.js', 'flag.svg', 'icon.svg', 'og.png', 'hand.webp',
   'site.webmanifest', 'robots.txt',
   // fonts are downloaded by setup.sh from the official package (checksum-verified), not stored in the repository
   'mukta-devanagari-400.woff2', 'mukta-devanagari-800.woff2', 'mukta-latin-400.woff2', 'mukta-latin-800.woff2',
 ];
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
-  '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json',
+  '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json',
   '.txt': 'text/plain; charset=utf-8', '.pem': 'text/plain; charset=utf-8', '.woff2': 'font/woff2',
 };
 const STATIC = new Map();
@@ -226,7 +226,7 @@ const server = http.createServer(async (req, res) => {
       if (req.headers['if-none-match'] === f.etag) { res.writeHead(304, SECURITY_HEADERS); return res.end(); }
       // page, script and styles are always re-checked (cheap, thanks to ETag) so updates reach everyone at once;
       // fonts and images rarely change and can be kept for a day
-      const cache = /\.(woff2|png|svg)$/.test(p) ? 'public, max-age=86400' : 'no-cache';
+      const cache = /\.(woff2|png|svg|webp)$/.test(p) ? 'public, max-age=86400' : 'no-cache';
       return send(res, 200, req.method === 'HEAD' ? Buffer.alloc(0) : f.body, f.type, { ETag: f.etag, 'Cache-Control': cache });
     }
     return send(res, 404, 'Not found', 'text/plain; charset=utf-8');

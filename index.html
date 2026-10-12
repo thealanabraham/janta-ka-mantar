@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>जनता का मंतर / Janta ka Mantar</title>
 <meta name="description" content="जंतर मंतर नहीं जा सकते? यहाँ खड़े होइए। For a free, fair and accountable Election Commission. One tap. No name, no data.">
-<meta name="theme-color" content="#FAF8F5">
+<meta name="theme-color" content="#FBF9F4">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
 <meta name="google" content="notranslate">
@@ -19,8 +19,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/mukta-devanagari-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=6">
-<script src="/app.js?v=6" defer></script>
+<link rel="preload" href="/hand.webp" as="image" type="image/webp">
+<link rel="stylesheet" href="/style.css?v=7">
+<script src="/app.js?v=7" defer></script>
 </head>
 <body>
 <main class="page">
@@ -30,39 +31,32 @@
   </header>
 
   <h1 class="question">
+    <span class="en">If you could,<br>would you be there?</span>
+    <span class="rule" aria-hidden="true"></span>
     <span class="line hi">अगर आप जा पाते, तो क्या आप वहाँ होते?</span>
-    <span class="line en">If you could, would you be there?</span>
   </h1>
-
-  <p class="cause">
-    <span class="line">एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।</span>
-    <span class="line">For a free, fair and accountable Election Commission.</span>
-  </p>
 
   <section class="act" id="act" data-state="ready">
     <div class="hero" id="hero" aria-hidden="true">
-      <svg class="bands" viewBox="0 0 400 150" preserveAspectRatio="none">
-        <path class="saffron" d="M0 28.2 L12 21.7 L22 21.6 L29 29.3 L37 25.2 L45 23.2 L60 26.8 L75 21.5 L84 26.4 L93 33.2 L105 27.4 L116 25.6 L125 27.8 L135 26.9 L144 28.9 L153 26.7 L167 28.3 L182 22.2 L195 22.5 L202 27.7 L214 29.8 L226 26.9 L237 29.4 L248 31.6 L260 27.5 L274 23.8 L286 21.2 L295 26.2 L308 22.3 L318 33.7 L328 26.5 L342 29.6 L352 24.6 L367 26.5 L376 23.3 L388 27.6 L398 24.7 L400 27.9 V150 H0Z"/>
-        <path class="tear" d="M0 79.6 L14 79.7 L26 77.5 L38 86.3 L48 76.7 L60 76.3 L75 81.2 L83 76.1 L91 77.5 L98 79.7 L112 80.2 L123 81.3 L132 84.0 L145 81.7 L154 82.3 L167 79.2 L178 83.7 L185 77.7 L195 83.8 L203 81.0 L212 76.7 L227 86.1 L236 80.8 L249 77.4 L260 77.5 L268 85.1 L278 77.7 L293 82.4 L307 77.7 L321 85.1 L336 77.7 L349 78.6 L356 76.7 L365 80.8 L376 83.7 L388 86.9 L396 83.3 L400 77.5 V150 H0Z"/>
-        <path class="green" d="M0 84.6 L14 84.7 L26 82.5 L38 91.3 L48 81.7 L60 81.3 L75 86.2 L83 81.1 L91 82.5 L98 84.7 L112 85.2 L123 86.3 L132 89.0 L145 86.7 L154 87.3 L167 84.2 L178 88.7 L185 82.7 L195 88.8 L203 86.0 L212 81.7 L227 91.1 L236 85.8 L249 82.4 L260 82.5 L268 90.1 L278 82.7 L293 87.4 L307 82.7 L321 90.1 L336 82.7 L349 83.6 L356 81.7 L365 85.8 L376 88.7 L388 91.9 L396 88.3 L400 82.5 V150 H0Z"/>
-      </svg>
-      <svg class="hand" viewBox="0 0 200 240">
-        <g class="spark"><path d="M104 4 V16 M80 12 L87 22 M128 12 L121 22"/></g>
-        <path class="skin" d="M86 150 V44 a18 18 0 0 1 36 0 V150 Z"/>
-        <path class="nail" d="M93 48 a11 11 0 0 1 22 0 v16 a4 4 0 0 1-4 4 h-14 a4 4 0 0 1-4-4z"/>
-        <path class="ink" d="M104 46 V62"/>
-        <path class="crease" d="M93 100 q11 5 22 0 M93 124 q11 5 22 0"/>
-        <path class="skin" d="M56 150 q0-22 22-22 h74 q24 0 24 24 v38 q0 50-48 50 h-26 q-46 0-46-46z"/>
-        <path class="fold" d="M122 132 q13-10 26 0 q12-9 26 4 M148 132 v28 M122 156 h52 M122 178 h50"/>
-        <path class="thumb" d="M56 168 q22-12 64-4 q12 3 12 14 q0 12-14 12 h-42 q-20 0-20-22z"/>
-      </svg>
+      <span class="halo"></span>
+      <span class="photo"><img class="hand" src="/hand.webp" width="424" height="400" alt="" decoding="async" fetchpriority="high"></span>
     </div>
 
     <button class="stand" id="stand" type="button" aria-describedby="stand-status">
-      <span class="when-ready"><b>मेरा समर्थन है</b><i></i><span>I stand with this</span></span>
-      <span class="when-done"><b>✓ आप गिने गए</b><i></i><span>You’re counted</span></span>
+      <span class="when-ready"><span class="hi">मैं भी साथ हूँ — अपना समर्थन दर्ज करें</span><span class="en">I stand with this — tap to add your support</span></span>
+      <span class="when-done"><span class="hi">✓ आपका समर्थन दर्ज हो गया</span><span class="en">Your support is added</span></span>
     </button>
-    <p class="status" id="stand-status" role="status" aria-live="polite"></p>
+    <p class="private">न नाम · न फ़ोन नंबर · न लॉगिन<span>No name · No phone number · No login</span></p>
+
+    <p class="count-row" aria-live="polite">
+      <span class="now">अभी<br>Now</span>
+      <span class="prev" id="count-prev"></span>
+      <span class="count" id="count">0</span>
+      <span class="plus" id="count-plus">+1</span>
+      <span class="count-label">लोग साथ हैं<br>people stand with this</span>
+    </p>
+
+    <p class="status" id="stand-status" role="status"></p>
     <div class="share" id="share" hidden>
       <button type="button" class="share-btn share-wa" id="share-wa">WhatsApp पर भेजें / Send on WhatsApp</button>
       <button type="button" class="share-btn" id="share-img">तस्वीर / Image</button>
@@ -70,19 +64,20 @@
     </div>
   </section>
 
-  <section class="tally">
-    <p class="count-row"><span class="count" id="count">0</span> <span class="count-label">लोग साथ खड़े हैं / people stand with this</span></p>
-    <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
-    <p class="meta"><span id="since">11 अक्टूबर 2026 से / since 11 Oct 2026</span><span id="milestone-text"></span></p>
+  <section class="about">
+    <p class="cause">एक स्वतंत्र, निष्पक्ष और जवाबदेह चुनाव आयोग के लिए।<span>For a free, fair and accountable Election Commission.</span></p>
+    <div class="tally">
+      <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+      <p class="meta"><span id="since">11 अक्टूबर 2026 से / since 11 Oct 2026</span><span id="milestone-text"></span></p>
+    </div>
+    <footer class="foot">
+      <p class="tags">Non-partisan <i>•</i> No name <i>•</i> No data <i>•</i> No tracking</p>
+      <details class="how">
+        <summary>यह कैसे काम करता है / How it works</summary>
+        <p>निर्दलीय। आपका कोई विवरण नहीं लिया जाता। The server keeps one number and nothing about you. Your phone remembers your tap and solves a small puzzle that stops bots. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
+      </details>
+    </footer>
   </section>
-
-  <footer class="foot">
-    <p>निर्दलीय। न नाम, न डेटा, न ट्रैकिंग।<br>Non-partisan. No name, no data, no tracking.</p>
-    <details class="how">
-      <summary>यह कैसे काम करता है / How it works</summary>
-      <p>The server keeps one number and nothing about you. Your phone remembers your tap and solves a small puzzle that stops bots. The total updates in batches every minute, and every count is <a href="/publickey.pem">digitally signed</a>, with a <a href="/api/history">public history</a>. <a href="__SOURCE__" id="source-link">Open source</a>.</p>
-    </details>
-  </footer>
 </main>
 <canvas id="card" width="1080" height="1350" hidden></canvas>
 </body>

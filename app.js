@@ -4,7 +4,7 @@
 
   const $ = (id) => document.getElementById(id);
   const act = $('act'), btn = $('stand'), status = $('stand-status'), shareBox = $('share');
-  const countEl = $('count'), sinceEl = $('since'), barFill = $('bar-fill'), msText = $('milestone-text');
+  const countEl = $('count'), prevEl = $('count-prev'), sinceEl = $('since'), barFill = $('bar-fill'), msText = $('milestone-text');
   const SITE = location.origin;
   const MARK = 'jkm-stood';                     // the only thing ever stored, and only on this phone
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -114,7 +114,7 @@
     btn.disabled = true;
     btn.setAttribute('aria-pressed', 'true');
     status.textContent = justNow
-      ? 'अब इसे आगे भेजिए।\nNow pass it on.'
+      ? 'धन्यवाद। अब इसे आगे भेजिए।\nThank you. Now pass it on.'
       : 'आप पहले ही गिने जा चुके हैं। अब आगे भेजिए।\nYou’re already counted. Pass it on.';
     shareBox.hidden = false;
   }
@@ -130,8 +130,12 @@
       store.set();
       mine = 1;
       tappedAt = Math.floor(Date.now() / 1000);
-      render();
+      // show "before → after": the old number stays, the hand rises, then the count moves on
+      prevEl.textContent = fmt.format(shown);
+      act.classList.add('just');
       setDone(true);
+      setTimeout(render, reduceMotion ? 0 : 700);
+      setTimeout(() => act.classList.remove('just'), 9000);
       if (navigator.vibrate) navigator.vibrate(30);
     } catch {
       act.dataset.state = 'ready';
@@ -168,28 +172,32 @@
   // Share card: drawn on the phone itself, so no server ever sees who made one.
   async function drawCard() {
     const c = $('card'), g = c.getContext('2d');
-    const W = c.width, H = c.height, css = getComputedStyle(document.body);
-    const fam = css.fontFamily;
-    try { await Promise.all([document.fonts.load(`800 40px Mukta`, 'जनता'), document.fonts.load(`400 40px Mukta`, 'जनता')]); } catch {}
-    g.fillStyle = '#2B1747'; g.fillRect(0, 0, W, H);
-    // the tricolour and the motto
-    const flagImg = new Image(); flagImg.src = '/flag.svg';
-    try { await flagImg.decode(); g.drawImage(flagImg, 96, 110, 210, 140); } catch {}
-    g.fillStyle = '#FFFFFF'; g.textBaseline = 'alphabetic';
-    g.font = `800 64px ${fam}`; g.fillText('सत्यमेव जयते', 350, 200);
-    g.font = `400 38px ${fam}`; g.fillStyle = '#CBB8EA'; g.fillText('जनता का मंतर / Janta ka Mantar', 350, 252);
+    const W = c.width, H = c.height, fam = getComputedStyle(document.body).fontFamily;
+    try { await Promise.all([document.fonts.load('800 40px Mukta', 'जनता'), document.fonts.load('400 40px Mukta', 'जनता')]); } catch {}
+    g.fillStyle = '#FBF9F4'; g.fillRect(0, 0, W, H);
+    g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+    g.fillStyle = '#14213D'; g.font = `800 50px ${fam}`; g.fillText('जनता का मंतर', W / 2, 120);
+    const tw = g.measureText('जनता का मंतर').width;
+    g.fillStyle = '#F2801F'; g.fillRect(W / 2 - tw / 2 - 110, 104, 80, 3);
+    g.fillStyle = '#1F8A3B'; g.fillRect(W / 2 + tw / 2 + 30, 104, 80, 3);
+    g.fillStyle = '#4B556B'; g.font = `400 30px ${fam}`; g.fillText('The digital Jantar Mantar', W / 2, 166);
+    g.textAlign = 'left'; g.fillStyle = '#14213D'; g.font = `400 76px ${fam}`;
+    g.fillText('If you could,', 96, 300); g.fillText('would you be there?', 96, 385);
+    g.fillRect(96, 420, 44, 3);
+    g.fillStyle = '#4B556B'; g.font = `400 42px ${fam}`; g.fillText('अगर आप जा पाते, तो क्या आप वहाँ होते?', 96, 490);
+    const hand = new Image(); hand.src = '/hand.webp';
+    try { await hand.decode(); g.drawImage(hand, 560, 560, 424, 400); } catch {}
     const n = latest ? fmt.format(latest.count + mine) : '';
-    g.fillStyle = '#FFFFFF'; g.font = `800 ${n.length > 9 ? 150 : 190}px ${fam}`; g.fillText(n, 90, 640);
-    g.font = `800 64px ${fam}`; g.fillText('लोग साथ खड़े हैं', 96, 740);
-    g.font = `400 48px ${fam}`; g.fillStyle = '#CBB8EA'; g.fillText('people stand with this', 96, 806);
-    g.fillStyle = '#FFFFFF'; g.font = `400 44px ${fam}`;
-    g.fillText('एक स्वतंत्र, निष्पक्ष और जवाबदेह', 96, 960);
-    g.fillText('चुनाव आयोग के लिए।', 96, 1020);
-    g.fillStyle = '#CBB8EA'; g.font = `400 36px ${fam}`;
-    g.fillText('For a free, fair and accountable Election Commission.', 96, 1080);
-    g.fillStyle = '#A97BE8'; g.fillRect(96, 1170, 888, 4);
-    g.fillStyle = '#FFFFFF'; g.font = `800 50px ${fam}`; g.fillText(SITE.replace(/^https?:\/\//, ''), 96, 1250);
-    g.fillStyle = '#CBB8EA'; g.font = `400 32px ${fam}`; g.fillText('एक टैप। न नाम, न डेटा। / One tap. No name, no data.', 96, 1300);
+    g.fillStyle = '#F2801F'; g.font = `800 28px ${fam}`; g.fillText('अभी / NOW', 96, 640);
+    g.fillStyle = '#14213D'; g.font = `800 ${n.length > 8 ? 120 : 150}px ${fam}`; g.fillText(n, 90, 780);
+    g.font = `400 38px ${fam}`; g.fillStyle = '#4B556B';
+    g.fillText('लोग साथ खड़े हैं', 96, 850); g.fillText('people stand with this', 96, 900);
+    g.fillStyle = '#14213D'; g.font = `400 34px ${fam}`;
+    g.fillText('स्वतंत्र, निष्पक्ष और जवाबदेह', 96, 1010); g.fillText('चुनाव आयोग के लिए।', 96, 1056);
+    g.fillStyle = '#4B556B'; g.font = `400 28px ${fam}`;
+    g.fillText('For a free, fair and accountable', 96, 1104); g.fillText('Election Commission.', 96, 1140);
+    g.fillStyle = '#14213D'; g.font = `800 46px ${fam}`; g.fillText(SITE.replace(/^https?:\/\//, ''), 96, 1250);
+    g.fillStyle = '#8A8F9C'; g.font = `400 24px ${fam}`; g.fillText('NON-PARTISAN  •  NO NAME  •  NO DATA  •  NO TRACKING', 96, 1300);
     return new Promise((res) => c.toBlob(res, 'image/png'));
   }
 
